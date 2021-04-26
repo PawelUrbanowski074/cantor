@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" />
+    <link href="css/style.css" rel="stylesheet">
+    <script defer src="js/script.js"></script>
+
+</head>
+
+<body class="body">
+    <form class="js-form">
+        <h1 class="body__mainHeader">Internetowy kantor walut</h1>
+        <section class="section">
+            <fieldset class="section__fieldset">
+                <legend class="section__legend">Co sprzedajesz:</legend>
+                <ul class="section__unorderedList">
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="sell" value="zloty" class="section__input js-pln" required>
+                            <span class="section__radioText">Złotówki</span>
+                            <img class="section__image" src="https://i.postimg.cc/6QY6tWdx/pln.png" alt="flaga Polski">
+                        </label>
+                    </li>
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="sell" value="euro" class="section__input js-eur"> <span
+                                class="section__radioText">Euro</span>
+                            <img class="section__image" src="https://i.postimg.cc/ht0QQq9p/euro.jpg" alt="flaga Europy">
+                        </label>
+                    </li>
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="sell" value="dolar" class="section__input js-usd"> <span
+                                class="section__radioText">Dolar</span>
+                            <img class="section__image" src="https://i.postimg.cc/sXbMCfrD/usd.png"
+                                alt="flaga Stanów Zjednoczonych">
+                        </label>
+                    </li>
+                </ul>
+                <label class="section__label--prize"><span class="section__labelText">Kwota:</span><input
+                        class="section__inputText js-toGive" type="number" min="0" step="0.1" required></label>
+            </fieldset>
+            <fieldset class="section__fieldset">
+                <legend class="section__legend">Co kupujesz:</legend>
+                <ul class="section__unorderedList">
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="buy" value="zloty" class="js-buyPln" required>
+                            <span class="section__radioText">Złotówki</span>
+                            <img class="section__image" src="https://i.postimg.cc/6QY6tWdx/pln.png" alt="flaga Polski">
+                        </label>
+                    </li>
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="buy" value="euro" class="js-buyEur">
+                            <span class="section__radioText">Euro</span>
+                            <img class="section__image" src="https://i.postimg.cc/ht0QQq9p/euro.jpg" alt="flaga Europy">
+                        </label>
+                    </li>
+                    <li class="section__listItem">
+                        <label class="section__label">
+                            <input type="radio" name="buy" value="dolar" class="js-buyUsd">
+                            <span class="section__radioText">Dolar</span>
+                            <img class="section__image" src="https://i.postimg.cc/sXbMCfrD/usd.png"
+                                alt="flaga Stanów Zjednoczonych">
+                        </label>
+                    </li>
+                </ul>
+                <label class="section__label--prize">
+                    <span class="section__labelText">Do wypłaty:</span> <span
+                        class="section__labelText--prize js-toGet">Brak</span>
+                </label>
+            </fieldset>
+
+            <div class="section__buttonGroup">
+                <input type="submit" class="section__button js-submit" value="Sprzedaj!">
+                <input type="reset" class="section__button js-reset" value="Zresetuj formularz">
+
+            </div>
+        </section>
+    </form>
+
+</body>
+
+</html>
