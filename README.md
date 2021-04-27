@@ -9,7 +9,8 @@ To perform the operation, follow these steps:
 2. Enter the amount (round to two decimal places).
 3. In second window select the currency you want to buy (get).
 4. Click **Sprzedaj!** button to make the transaction.
-5. After that you can reset the form using button **Zresetuj formularz**
+5. Received amount will be displayed at the bottom of the second window.
+6. After that you can reset the form using button **Zresetuj formularz**
 
 
 ## Application screenshot
