@@ -1,4 +1,4 @@
 # 
 
 
-https://palel.github.io/cantor/
+https://palel.github.io/cantor/kantor.html
