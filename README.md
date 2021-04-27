@@ -14,4 +14,4 @@ To perform the operation, follow these steps:
 
 
 ## Application screenshot
-![Cantor]("/images/cantor-screenshot.png")
+![Cantor](https://raw.githubusercontent.com/palel/cantor/main/images/cantor%20-%20screenschot.png)
