@@ -1,75 +1,83 @@
-console.log("Internetowy kantor walut");
+{
+    const welcome = () => {
+        console.log("Internetowy kantor walut");
+    }
+    welcome();
 
-let formElement = document.querySelector(".js-form");
+    const whatIsChecked = (buyPln, buyEur, buyUsd) => {
+        const pln = document.querySelector(".js-pln");
+        const eur = document.querySelector(".js-eur");
+        const usd = document.querySelector(".js-usd");
 
-let pln = document.querySelector(".js-pln");
-let eur = document.querySelector(".js-eur");
-let usd = document.querySelector(".js-usd");
-let toGive = document.querySelector(".js-toGive");
-
-let buyPln = document.querySelector(".js-buyPln");
-let buyEur = document.querySelector(".js-buyEur");
-let buyUsd = document.querySelector(".js-buyUsd");
-let toGet = document.querySelector(".js-toGet");
-
-let EURO = 4.54;
-let USD = 3.79;
-let exchangeValue = 0;
-
-formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    if (eur.checked & buyPln.checked) {
-        giveCurrency = "eurPln";
-    } else if (usd.checked & buyPln.checked) {
-        giveCurrency = "usdPln";
-    } else if (pln.checked & buyEur.checked) {
-        giveCurrency = "plnEur";
-    } else if (usd.checked & buyEur.checked) {
-        giveCurrency = "usdEur";
-    } else if (pln.checked & buyUsd.checked) {
-        giveCurrency = "plnUsd";
-    } else if (eur.checked & buyUsd.checked) {
-        giveCurrency = "eurUsd";
-    } else {
-        giveCurrency = "other";
+        if (eur.checked & buyPln.checked) {
+            return "eurPln";
+        } else if (usd.checked & buyPln.checked) {
+            return "usdPln";
+        } else if (pln.checked & buyEur.checked) {
+            return "plnEur";
+        } else if (usd.checked & buyEur.checked) {
+            return "usdEur";
+        } else if (pln.checked & buyUsd.checked) {
+            return "plnUsd";
+        } else if (eur.checked & buyUsd.checked) {
+            return "eurUsd";
+        } else {
+            return "other";
+        }
     }
 
-    switch (giveCurrency) {
-        case "eurPln":
-            exchangeValue = toGive.value * EURO;
-            break;
-        case "usdPln":
-            exchangeValue = toGive.value * USD;
-            break;
-        case "plnEur":
-            exchangeValue = toGive.value / EURO;
-            break;
-        case "usdEur":
-            exchangeValue = toGive.value * USD / EURO;
-            break;
-        case "plnUsd":
-            exchangeValue = toGive.value / USD;
-            break;
-        case "eurUsd":
-            exchangeValue = toGive.value * EURO / USD;
-            break;
-        case "other":
-            exchangeValue = toGive.value * 1.00;
-            break;
+    const calculateResult = (amount, giveCurrency) => {
+        const rateEUR = 4.54;
+        const rateUSD = 3.79;
+
+        switch (giveCurrency) {
+            case "eurPln":
+                return amount * rateEUR;
+            case "usdPln":
+                return amount * rateUSD;
+            case "plnEur":
+                return amount / rateEUR;
+            case "usdEur":
+                return amount * rateUSD / rateEUR;
+            case "plnUsd":
+                return amount / rateUSD;
+            case "eurUsd":
+                return amount * rateEUR / rateUSD;
+            case "other":
+                return amount * 1.00;
+        }
     }
 
-    toGet.innerText = +exchangeValue.toFixed(2);
-
-    if (buyPln.checked) {
-        toGet.innerText += " PLN";
-    } else if (buyEur.checked) {
-        toGet.innerText += " EUR";
-    } else {
-        toGet.innerText += " USD";
+    const addCurrencyText = (buyPln, buyEur, buyUsd) => {
+        if (buyPln.checked) {
+            return " PLN";
+        } else if (buyEur.checked) {
+            return " EUR";
+        } else if (buyUsd.checked) {
+            return " USD";
+        }
     }
-});
 
-formElement.addEventListener("reset", (event) => {
-    toGet.innerText = "Brak";
-});
+    const formElement = document.querySelector(".js-form");
+    const toGet = document.querySelector(".js-toGet");
+
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+        const buyPln = document.querySelector(".js-buyPln");
+        const buyEur = document.querySelector(".js-buyEur");
+        const buyUsd = document.querySelector(".js-buyUsd");
+        const toGive = document.querySelector(".js-toGive");
+        const amount = toGive.value;
+
+        const giveCurrency = whatIsChecked(buyPln, buyEur, buyUsd);
+        const exchangeValue = calculateResult(amount, giveCurrency);
+        
+        toGet.innerText = +exchangeValue.toFixed(2) + addCurrencyText(buyPln, buyEur, buyUsd);
+    }
+    const onFormReset = () => {
+        toGet.innerText = "Brak";
+    }
+
+    formElement.addEventListener("submit", onFormSubmit);
+    formElement.addEventListener("reset", onFormReset);
+}
