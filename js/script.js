@@ -4,57 +4,40 @@
     }
     welcome();
 
-    const whatIsChecked = (buyPln, buyEur, buyUsd) => {
-        const pln = document.querySelector(".js-pln");
-        const eur = document.querySelector(".js-eur");
-        const usd = document.querySelector(".js-usd");
-
-        if (eur.checked & buyPln.checked) {
-            return "eurPln";
-        } else if (usd.checked & buyPln.checked) {
-            return "usdPln";
-        } else if (pln.checked & buyEur.checked) {
-            return "plnEur";
-        } else if (usd.checked & buyEur.checked) {
-            return "usdEur";
-        } else if (pln.checked & buyUsd.checked) {
-            return "plnUsd";
-        } else if (eur.checked & buyUsd.checked) {
-            return "eurUsd";
-        } else {
-            return "other";
+    const whatInRadio = (radio) => {
+        switch (radio) {
+            case "zloty":
+                return "pln";
+            case "euro":
+                return "eur";
+            case "dolar":
+                return "usd";
         }
     }
 
-    const calculateResult = (amount, giveCurrency) => {
+    const calculateResult = (amount, giveCurrency, radioSell, radioBuy) => {
         const rateEUR = 4.54;
         const rateUSD = 3.79;
 
-        switch (giveCurrency) {
-            case "eurPln":
-                return amount * rateEUR;
-            case "usdPln":
-                return amount * rateUSD;
-            case "plnEur":
-                return amount / rateEUR;
-            case "usdEur":
-                return amount * rateUSD / rateEUR;
-            case "plnUsd":
-                return amount / rateUSD;
-            case "eurUsd":
-                return amount * rateEUR / rateUSD;
-            case "other":
-                return amount * 1.00;
+        if (radioSell === radioBuy) {
+            return amount * 1.00;
         }
-    }
-
-    const addCurrencyText = (buyPln, buyEur, buyUsd) => {
-        if (buyPln.checked) {
-            return " PLN";
-        } else if (buyEur.checked) {
-            return " EUR";
-        } else if (buyUsd.checked) {
-            return " USD";
+        else {
+            switch (giveCurrency) {
+                case "eur pln":
+                    console.log("jestem", amount * rateEUR);
+                    return amount * rateEUR;
+                case "usd pln":
+                    return amount * rateUSD;
+                case "pln eur":
+                    return amount / rateEUR;
+                case "usd eur":
+                    return amount * rateUSD / rateEUR;
+                case "pln usd":
+                    return amount / rateUSD;
+                case "eur usd":
+                    return amount * rateEUR / rateUSD;
+            }
         }
     }
 
@@ -63,16 +46,14 @@
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        const buyPln = document.querySelector(".js-buyPln");
-        const buyEur = document.querySelector(".js-buyEur");
-        const buyUsd = document.querySelector(".js-buyUsd");
-        const toGive = document.querySelector(".js-toGive");
-        const amount = toGive.value;
+        const toGive =  document.querySelector(".js-toGive").value;
+        const radioSell = document.querySelector('input[name=sell]:checked').value;
+        const radioBuy = document.querySelector('input[name=buy]:checked').value;
 
-        const giveCurrency = whatIsChecked(buyPln, buyEur, buyUsd);
-        const exchangeValue = calculateResult(amount, giveCurrency);
-        
-        toGet.innerText = +exchangeValue.toFixed(2) + addCurrencyText(buyPln, buyEur, buyUsd);
+        const giveCurrency = whatInRadio(radioSell) + " " + whatInRadio(radioBuy);
+        const exchangeValue = calculateResult(toGive, giveCurrency, radioSell, radioBuy);
+
+        toGet.innerText = +exchangeValue.toFixed(2) + " " + whatInRadio(radioBuy).toUpperCase();
     }
     const onFormReset = () => {
         toGet.innerText = "Brak";
