@@ -28,5 +28,5 @@ To perform the operation, follow these steps:
 - BEM convention
 - ES6+
 
-## Application screenshot
+### Application screenshot
 ![Cantor](https://raw.githubusercontent.com/palel/cantor/main/images/cantor%20-%20screenschot.png)
