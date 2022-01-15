@@ -1,6 +1,6 @@
 # Pawel Urbanowski - Cantor
 
-## Preview: [currency-exchange demos](https://pawelurbanowski074.github.io/cantor/index.js)
+## Preview: [currency-exchange demos](https://pawelurbanowski074.github.io/cantor/kantor.html)
 
 ### Table of content
 1. [General](#general)
